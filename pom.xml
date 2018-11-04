@@ -17,6 +17,12 @@
       <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>RELEASE</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <properties>
@@ -41,6 +47,32 @@
           <showDeprecation>true</showDeprecation>
         </configuration>
       </plugin>
-    </plugins>
-  </build>
+
+
+  <plugin>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.1</version>
+    <configuration>
+      <source>${java.version}</source>
+      <target>${java.version}</target>
+    </configuration>
+  </plugin>
+  <plugin>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>2.19.1</version>
+    <configuration>
+      <includes>
+        <include>**/Test*.java</include>
+        <include>**/*Test.java</include>
+        <include>**/*Tests.java</include>
+        <include>**/*TestCase.java</include>
+      </includes>
+      <properties>
+        <!-- <includeTags>fast</includeTags> -->
+        <excludeTags>slow</excludeTags>
+      </properties>
+    </configuration>
+  </plugin>
+</plugins>
+</build>
 </project>
